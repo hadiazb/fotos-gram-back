@@ -26,12 +26,12 @@ export default class Server {
 	}
 
 	public start(callback: () => void) {
-		this.app.listen(this.port, callback);
+		this.app.listen(process.env.PORT || this.port, callback);
 	}
 
 	public async connectDB() {
 		try {
-			const resp = await mongoose.connect(dbUrl, {
+			await mongoose.connect(dbUrl, {
 				autoIndex: true,
 			});
 
